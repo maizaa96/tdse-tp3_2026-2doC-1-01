@@ -235,6 +235,11 @@ void displayStringWrite( const char * str )
     }
 }
 
+void displayDataWrite( const char data )
+{
+    displayCodeWrite(DISPLAY_RS_DATA, data);
+}
+
 //=====[Implementations of private functions]==================================
 static void displayCodeWrite( bool type, uint8_t dataBus )
 {

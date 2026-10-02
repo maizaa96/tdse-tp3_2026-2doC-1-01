@@ -35,34 +35,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := tdse-tp3_01-porting_c_code
+BUILD_ARTIFACT_NAME := tdse-tp3_02-porting_c_code
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-tdse-tp3_01-porting_c_code.elf \
+tdse-tp3_02-porting_c_code.elf \
 
 MAP_FILES += \
-tdse-tp3_01-porting_c_code.map \
+tdse-tp3_02-porting_c_code.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-tdse-tp3_01-porting_c_code.list \
+tdse-tp3_02-porting_c_code.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: tdse-tp3_01-porting_c_code.elf secondary-outputs
+main-build: tdse-tp3_02-porting_c_code.elf secondary-outputs
 
 # Tool invocations
-tdse-tp3_01-porting_c_code.elf tdse-tp3_01-porting_c_code.map: $(OBJS) $(USER_OBJS) C:\Users\maiza\STM32CubeIDE\workspace_1.19.0\tdse-tp3_01-porting_c_code\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "tdse-tp3_01-porting_c_code.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\maiza\STM32CubeIDE\workspace_1.19.0\tdse-tp3_01-porting_c_code\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="tdse-tp3_01-porting_c_code.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+tdse-tp3_02-porting_c_code.elf tdse-tp3_02-porting_c_code.map: $(OBJS) $(USER_OBJS) C:\Users\maiza\STM32CubeIDE\workspace_1.19.0\tdse-tp3_02-porting_c_code\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "tdse-tp3_02-porting_c_code.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\maiza\STM32CubeIDE\workspace_1.19.0\tdse-tp3_02-porting_c_code\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="tdse-tp3_02-porting_c_code.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -71,14 +71,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-tdse-tp3_01-porting_c_code.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "tdse-tp3_01-porting_c_code.list"
+tdse-tp3_02-porting_c_code.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "tdse-tp3_02-porting_c_code.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout tdse-tp3_01-porting_c_code.elf tdse-tp3_01-porting_c_code.list tdse-tp3_01-porting_c_code.map
+	-$(RM) default.size.stdout tdse-tp3_02-porting_c_code.elf tdse-tp3_02-porting_c_code.list tdse-tp3_02-porting_c_code.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
