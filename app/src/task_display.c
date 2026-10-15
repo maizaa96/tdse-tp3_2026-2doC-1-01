@@ -138,24 +138,28 @@ void task_display_statechart(void)
 			break;
 
 		case ST_DSP_UPDATE:
-
-			if ((true == p_task_display_dta->flag) && (EV_DSP_UPDATE == p_task_display_dta->event))
-			{
-				p_task_display_dta->flag = false;
-				p_task_display_dta->state = ST_DSP_UPDATE;
-				p_task_display_dta->row = 0;
-				p_task_display_dta->column = 0;
-
-				displayCharPositionWrite(0, 0);
-			    p_task_display_dta->row = 0;
-				displayStringWrite(p_task_display_dta->ddram[p_task_display_dta->row]);
-
-			    displayCharPositionWrite(0, 1);
-				p_task_display_dta->row = 1;
-				displayStringWrite(p_task_display_dta->ddram[p_task_display_dta->row]);
-
-				p_task_display_dta->state = ST_DSP_IDLE;
-			}
+			//posicionamos el cursor al inicio
+			if (p_task_display_dta->column == 0)
+			    {
+			        displayCharPositionWrite(0, p_task_display_dta->row);
+			    }
+			//escribimos un caracter
+			displayDataWrite(p_task_display_dta->ddram[p_task_display_dta->row][p_task_display_dta->column]);
+			//avanzamos a la siguiente posicion
+			p_task_display_dta->column++;
+			//verficamos que estemos al final de la fila
+			if (p_task_display_dta->column >= COLUMNS)
+			    {
+			        p_task_display_dta->column = 0;
+			        p_task_display_dta->row++;
+			    }
+			//verificamos que se nos acbaron las filas
+			if (p_task_display_dta->row >= ROWS)
+			    {
+			        p_task_display_dta->row = 0;
+			        p_task_display_dta->flag = false;
+			        p_task_display_dta->state = ST_DSP_IDLE;
+			    }
 
 			break;
 
